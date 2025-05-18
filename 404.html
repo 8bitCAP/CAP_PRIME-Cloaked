@@ -45,7 +45,7 @@
   </style>
   <script>
     function openGameAndRedirect(url, redirectURL) {
-      // Open about:blank window with iframe for the game
+      // Try to open about:blank window with iframe for the game
       let win = window.open("about:blank", "_blank");
       if (win) {
         let doc = win.document;
@@ -61,9 +61,12 @@
         iframe.setAttribute("allow", "fullscreen");
         doc.body.style.margin = "0";
         doc.body.appendChild(iframe);
+
+        // Only redirect if popup was successful
+        window.location.href = redirectURL;
+      } else {
+        alert("Popup was blocked! Please allow pop-ups to continue.");
       }
-      // Redirect current tab
-      window.location.href = redirectURL;
     }
 
     // Auto-execute on page load
