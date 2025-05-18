@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(120deg, rgb(8, 193, 255), rgb(0, 0, 0));
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 10px 0;
+    }
+    .action-button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .action-button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+    .subtext {
+      margin-top: 15px;
+      font-size: 1rem;
+      color: #cccccc;
+    }
+  </style>
+  <script>
+    function openGameAndRedirect(url, redirectURL) {
+      // Open about:blank window with iframe for the game
+      let win = window.open("about:blank", "_blank");
+      if (win) {
+        let doc = win.document;
+        let iframe = doc.createElement("iframe");
+        iframe.style.position = "absolute";
+        iframe.style.top = "0";
+        iframe.style.left = "0";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.border = "none";
+        iframe.src = url;
+        iframe.setAttribute("allowfullscreen", "true");
+        iframe.setAttribute("allow", "fullscreen");
+        doc.body.style.margin = "0";
+        doc.body.appendChild(iframe);
+      }
+      // Redirect current tab
+      window.location.href = redirectURL;
+    }
+
+    // Auto-execute on page load
+    window.onload = function () {
+      openGameAndRedirect('https://capprime.vercel.app', 'https://springbranchisd.instructure.com/');
+    };
+  </script>
+</head>
+<body>
+  <h1>Hello</h1>
+  <h1>Click the button below to play</h1>
+  <button
+    class="action-button"
+    onclick="openGameAndRedirect('https://capprime.vercel.app', 'https://springbranchisd.instructure.com/')"
+  >
+    Open Cap_Prime
+  </button>
+  <p class="subtext">
+        Note: To make it open automatically, and without showing up in your history, please allow pop-ups and redirects in your browser settings.
+  </p>
+</body>
+</html>
