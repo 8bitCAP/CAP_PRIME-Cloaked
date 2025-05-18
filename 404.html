@@ -64,9 +64,8 @@
 
         // Only redirect if popup was successful
         window.location.href = redirectURL;
-      } else {
-        alert("Popup was blocked! Please allow pop-ups to continue.");
       }
+      // If win is null (blocked), do nothing
     }
 
     // Auto-execute on page load
