@@ -32,11 +32,31 @@
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s, transform 0.2s;
+      margin-bottom: 15px; /* space between buttons */
     }
     .action-button:hover {
       background-color: #0056b3;
       transform: scale(1.05);
     }
+
+     .download-button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-bottom: 15px; /* space between buttons */
+    }
+    
+    .download-button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+    
     .subtext {
       margin-top: 15px;
       font-size: 1rem;
@@ -68,6 +88,23 @@
       // If win is null (blocked), do nothing
     }
 
+    // Function to download the current page as an HTML file
+    function downloadPage() {
+      const htmlContent = document.documentElement.outerHTML;
+      const blob = new Blob([htmlContent], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      
+      const downloadLink = document.createElement('a');
+      downloadLink.href = url;
+      downloadLink.download = 'cap-launcher.html'; // filename
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      
+      // Clean up
+      document.body.removeChild(downloadLink);
+      URL.revokeObjectURL(url);
+    }
+
     // Auto-execute on page load
     window.onload = function () {
       openGameAndRedirect('https://capprime.vercel.app', 'https://springbranchisd.instructure.com/');
@@ -82,6 +119,10 @@
     onclick="openGameAndRedirect('https://capprime.vercel.app', 'https://springbranchisd.instructure.com/')"
   >
     Open Cap_Prime
+  </button>
+  <!-- New Download Button -->
+  <button class="action-button" onclick="downloadPage()">
+    Download Launcher
   </button>
   <p class="subtext">
         Note: To make it open automatically, and without showing up in your history, please allow pop-ups and redirects in your browser settings.
